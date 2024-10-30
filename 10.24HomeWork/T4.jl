@@ -74,15 +74,27 @@ end
 @printf("最佳 R² = %.6f\n", best_R_squared)
 @printf("最佳残差范数: %.6e\n", best_resnorm)
 
-# 绘制拟合结果
-figure()
-scatter3(pA, pB, r, label="实验数据")
-xlabel("pA (MPa)")
-ylabel("pB (MPa)")
-zlabel("反应速率 (mol/g.min)")
+# 预测 r 值
+predicted_r = kinetic_model(best_params, p)
 
+# 绘制实验数据和预测点
+figure()
+scatter(1:length(r), r, label="实验数据", color="red", s=100, marker="o")  # 实验数据点，红色圆圈
+hold("on")
+scatter(1:length(predicted_r), predicted_r, label="预测数据", color="blue", s=100, marker="x")  # 预测数据点，蓝色叉号
+xlabel("数据点索引")
+ylabel("反应速率 (mol/g.min)")
+title("实验数据与预测数据")
+legend()
+
+# 绘制拟合曲面
+figure()
 pA_range = range(minimum(pA), stop=maximum(pA), length=50)
 pB_range = range(minimum(pB), stop=maximum(pB), length=50)
 fitted_surface = [kinetic_model(best_params, [pA, pB])[1] for pA in pA_range, pB in pB_range]
-surface(pA_range, pB_range, fitted_surface, alpha=0.5, label="拟合曲面")
-plt_view(40, 35)
+surface(pA_range, pB_range, fitted_surface, alpha=0.5, color="blue")
+xlabel("pA (MPa)")
+ylabel("pB (MPa)")
+zlabel("反应速率 (mol/g.min)")
+title("拟合曲面")
+plt_view(40, 35);
