@@ -25,7 +25,6 @@ ylabel("y")
 legend("data","1st-order","2nd-order")
 hold("off" )
 
-
 figure()
 plot(t,y,"r*",t,y1,"bo",t,y2,"k+")
 xlabel("t")
