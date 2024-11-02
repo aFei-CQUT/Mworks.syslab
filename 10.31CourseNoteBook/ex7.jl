@@ -12,7 +12,7 @@ function dysdx(x, y)
 
 end
 
-x,y = ode45(dysdx, [0 100], [0 1])
+x, y = ode45(dysdx, [0 100], [0 1])
 
 # 绘图
 plot(x, y[:,1], "b", x, y[:,2], "r")
