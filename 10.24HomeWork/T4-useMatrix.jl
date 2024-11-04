@@ -21,7 +21,7 @@ r = [0.672, 1.072, 0.598, 0.713, 0.610, 0.834, 0.828, 0.656, 0.694, 0.791, 0.418
 # 参数上下界和初始值
 lb = [0.0, 0.0]
 ub = [Inf, Inf]
-initial_params = [1.0, 1.0]
+initial_params = [1000, 1000]  # 可以根据实际情况调整
 
 # 使用优化算法求解
 params, resnorm = lsqcurvefit(kinetic_model, initial_params, [pA pB], r, lb, ub)

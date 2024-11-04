@@ -84,9 +84,9 @@ P2 = (n * R * T2) / V2
 tolerance = 1e-6
 max_iterations = 100
 global iteration = 0
-global diff = 1.0
+global abs_error = 1.0
 
-while diff > tolerance && iteration < max_iterations
+while abs_error > tolerance && iteration < max_iterations
     global iteration += 1
     Pr2 = P2 / Pc
     Tr2 = T2 / Tc
@@ -95,7 +95,7 @@ while diff > tolerance && iteration < max_iterations
     println("Debug: Z2 = ", Z2, " type: ", typeof(Z2))
     
     P2_new = (Z2 * R * T2) / v2
-    global diff = abs(P2_new - P2) / P2
+    global abs_error = abs(P2_new - P2)
     global P2 = P2_new
     
     println("Debug: P2 = ", P2, " type: ", typeof(P2))

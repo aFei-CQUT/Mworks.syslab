@@ -27,7 +27,7 @@ lb = [0.0, 0.0]
 ub = [Inf, Inf]
 
 # 初始参数
-initial_params = [1.0, 1.0]  # 可以根据实际情况调整
+initial_params = [1000, 1000]  # 可以根据实际情况调整
 
 # 使用优化算法求解
 res_opt, resnorm = lsqcurvefit(kinetic_model, initial_params, p, r, lb, ub)
@@ -55,14 +55,14 @@ ylabel("反应速率 (mol/g.min)")
 title("实验数据与预测数据")
 legend()
 
-# 绘制拟合曲面
-figure()
-pA_range = range(minimum(pA), stop=maximum(pA), length=50)
-pB_range = range(minimum(pB), stop=maximum(pB), length=50)
-fitted_surface = [kinetic_model(res_opt, [pA, pB])[1] for pA in pA_range, pB in pB_range]
-surface(pA_range, pB_range, fitted_surface, alpha=0.5, color="blue")
-xlabel("pA (MPa)")
-ylabel("pB (MPa)")
-zlabel("反应速率 (mol/g.min)")
-title("拟合曲面")
-plt_view(40, 35);
+# # 绘制拟合曲面
+# figure()
+# pA_range = range(minimum(pA), stop=maximum(pA), length=50)
+# pB_range = range(minimum(pB), stop=maximum(pB), length=50)
+# fitted_surface = [kinetic_model(res_opt, [pA, pB])[1] for pA in pA_range, pB in pB_range]
+# surface(pA_range, pB_range, fitted_surface, alpha=0.5, color="blue")
+# xlabel("pA (MPa)")
+# ylabel("pB (MPa)")
+# zlabel("反应速率 (mol/g.min)")
+# title("拟合曲面")
+# plt_view(40, 35);
