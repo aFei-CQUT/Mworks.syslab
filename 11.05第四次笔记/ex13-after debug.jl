@@ -1,11 +1,3 @@
-# 记录 debug 报错
-
-# julia> 正在运行 ex13.jl
-# ERROR: syntax: missing separator in array expression
-# Stacktrace:
-#  [1] top-level scope
-#    @ e:\LGRepository\Mworks.syslab\11.05第四次笔记\ex13.jl:19
-
 using TyOptimization
 
 fun = (x) -> exp(x[1] + 2 * x[2]^2 + 4 * x[1] * x[2] + 2 * x[2] +1)
@@ -21,11 +13,22 @@ lb = []
 ub = []
 
 nonlincon = x -> begin
+
 	C = [
-		1.5 + x[1] * x[2] - x[1] - x[2] ,
-		-x[1] * x[2] - 10
-		]
-		
+		1.5 + x[1] * x[2] - x[1] - x[2],
+		-x[1] * x[2] -10  	# 减号后面没有空格
+	]
+
+	# C = [
+    # 	1.5 + x[1] * x[2] - x[1] - x[2],
+    # 	- x[1] * x[2] - 10  # 减号和数值之间保持一致的空格风格
+	# ]
+
+	# C = [
+    # 	1.5+x[1]*x[2]-x[1]-x[2],
+    # 	-x[1]*x[2]-10  # 符号之间全部无空格
+	# ]
+
 	Ceq = []
 
 	return C, Ceq
