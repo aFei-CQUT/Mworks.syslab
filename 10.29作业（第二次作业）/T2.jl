@@ -39,12 +39,12 @@ println(rpad("B2", 10), rpad(string(round(flow_rates[4], digits=3)), 20, " "))
 # --- 第二小问求解 ---
 
 # 计算D和B的总流量
-D = flow_rates[1] + flow_rates[3]
-B = flow_rates[2] + flow_rates[4]
+D = flow_rates[1] + flow_rates[2]
+B = flow_rates[3] + flow_rates[4]
 
 # 计算D和B的各成分摩尔分数
-x_D = (flow_rates[1] * x_D1 .+ flow_rates[3] * x_D2) ./ D
-x_B = (flow_rates[2] * x_B1 .+ flow_rates[4] * x_B2) ./ B
+x_D = (flow_rates[1] * x_D1 .+ flow_rates[2] * x_D2) ./ D
+x_B = (flow_rates[3] * x_B1 .+ flow_rates[4] * x_B2) ./ B
 
 println()
 println("---------------- 第二小问求解 ----------------")
