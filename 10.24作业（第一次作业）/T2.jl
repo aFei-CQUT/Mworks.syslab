@@ -40,17 +40,14 @@ scatter(tq, cAq_spline, 10, "g", marker="d", filled=true, label="样条插值")
 legend()
 
 # 准备拟合数据
-ln_cA = log.(cA)  # 计算自然对数
+ln_cA = log.(cA)
 
-# 拟合一阶动力学方程，这里用线性回归 ln(cA) = kt + C
+# 拟合一阶动力学方程，这里用线性回归 ln(cA) = -kt - C
 lin_fit = fit("poly1", t, ln_cA)
 params = lin_fit.params
 
-# 提取 k 和 C
-k = params[1]
-C = params[2]
-
-# 输出拟合参数
+# 因 ln(cA) = -kt - C，则提取参数并取反得到k和C
+k, C = -params[1], -params[2]  # 取反得k, C值
 println("拟合参数:")
 println("k: ", k)
 println("C: ", C)
@@ -65,12 +62,12 @@ legend()
 
 # 第三幅图————绘制对数拟合还原后的曲线
 figure()
-hold(true) # 确保后续绘制不会覆盖之前的图形
+hold(true)
 scatter(t, cA, 10, "k", label="原始数据")
 scatter(tq, cAq_linear, 20, "b", marker="h", filled=true, label="线性插值")
 scatter(tq, cAq_spline, 10, "g", marker="d", filled=true, label="样条插值")
-fit_curve = exp.(k .* t .+ C)  # 恢复到原始形式 cA = e^(kt + C)
-plot(t, fit_curve, color="m")
+fit_curve = exp.(-k .* t .- C)  # 指数形式 cA = e^(-kt - C)
+plot(t, fit_curve, color="m", label="拟合曲线")
 title("还原后的拟合曲线cA-t")
 xlabel("t")
 ylabel("cA")
