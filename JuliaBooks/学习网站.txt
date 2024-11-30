@@ -1,0 +1,2 @@
+Julia中文社区：https://cn.julialang.org/
+也可自行搜索Julia官方社区（英文），挂载 copytranslator 翻译学习

@@ -14,19 +14,25 @@ fit2 = fit("poly2", t, y)
 p2 = fit2.params
 y2 = polyval(p2, t)
 
+# 第一张图
 figure()
 hold("on")
-scatter(t,y)
-plot(t,y)
-plotfit(fit1, "y:")
-plotfit(fit2,"m-.")
-xlabel("t")
-ylabel("y")
-legend("data","1st-order","2nd-order")
-hold("off" )
 
-figure()
-plot(t,y,"r*",t,y1,"bo",t,y2,"k+")
+scatter(t, y)
+plot(t, y)
+plotfit(fit1, "y:")
+plotfit(fit2, "m-.")
+
 xlabel("t")
 ylabel("y")
-legend("data","1st-order","2nd-order")
+legend("data", "1st-order", "2nd-order")
+hold("off")
+
+# 第二张图
+figure()
+hold(true)
+plot(t, y, "r*", t, y1, "bo", t, y2, "k+")
+
+xlabel("t")
+ylabel("y")
+legend("data", "1st-order", "2nd-order")
